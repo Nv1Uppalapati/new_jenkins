@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'any'}
+    agent { label 'master'}
 
     environment {
         function_name = 'java2121'
