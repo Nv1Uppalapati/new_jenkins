@@ -25,8 +25,8 @@ pipeline {
                  }
              }
              steps {
-                 withSonarQubeEnv('Sonar') {
-                     sh 'mvn sonar:nv1uppalapati'
+                  withSonarQubeEnv(credentialsId: 'jenkins') {
+            sh 'mvn sonar:nv1uppalapati'
                  }
              }
          }
