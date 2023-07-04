@@ -7,7 +7,7 @@ pipeline {
 
     stages {
 
-        // CI Start
+         //CI Start
         stage('Build') {
             steps {
                 echo 'Build'
@@ -16,36 +16,36 @@ pipeline {
         }
 
 
-        // stage("SonarQube analysis") {
-        //     agent any
+         stage("SonarQube analysis") {
+             agent any
 
-        //     when {
-        //         anyOf {
-        //             branch 'feature/*'
-        //             branch 'main'
-        //         }
-        //     }
-        //     steps {
-        //         withSonarQubeEnv('Sonar') {
-        //             sh 'mvn sonar:sonar'
-        //         }
-        //     }
-        // }
+             when {
+                 anyOf {
+                     branch 'feature/*'
+                     branch 'main'
+                 }
+             }
+             steps {
+                 withSonarQubeEnv('Sonar') {
+                     sh 'mvn sonar:sonar'
+                 }
+             }
+         }
 
-        // stage("Quality Gate") {
-        //     steps {
-        //         script {
-        //             try {
-        //                 timeout(time: 10, unit: 'MINUTES') {
-        //                     waitForQualityGate abortPipeline: true
-        //                 }
-        //             }
-        //             catch (Exception ex) {
+         stage("Quality Gate") {
+             steps {
+                 script {
+                     try {
+                         timeout(time: 10, unit: 'MINUTES') {
+                             waitForQualityGate abortPipeline: true
+                         }
+                     }
+                     catch (Exception ex) {
 
-        //             }
-        //         }
-        //     }
-        // }
+                     }
+                 }
+             }
+         }
 
         stage('Push') {
             steps {
@@ -77,7 +77,7 @@ pipeline {
                     steps {
                         echo 'Build'
 
-                        // sh "aws lambda update-function-code --function-name $function_name --region us-east-1 --s3-bucket bermtecbatch31 --s3-key sample-1.0.3.jar"
+                         sh "aws lambda update-function-code --function-name $function_name --region us-east-1 --s3-bucket bermtecbatch31 --s3-key sample-1.0.3.jar"
                     }
                 }
             }
