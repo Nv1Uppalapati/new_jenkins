@@ -17,9 +17,7 @@ pipeline {
 
 
          stage("SonarQube analysis") {
-             agent { label 'jenkins-slave' }
-
-
+             agent any
              when {
                  anyOf {
                      branch 'feature/*'
