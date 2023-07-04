@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'SonarQube'}
+    agent { label 'any'}
 
     environment {
         function_name = 'java2121'
